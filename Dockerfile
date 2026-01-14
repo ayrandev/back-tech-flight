@@ -2,13 +2,13 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-COPY flightontime/pom.xml .
-COPY flightontime/.mvn .mvn
-COPY flightontime/mvnw .
-COPY flightontime/mvnw.cmd .
+COPY flightontime/flightontime/pom.xml .
+COPY flightontime/flightontime/.mvn .mvn
+COPY flightontime/flightontime/mvnw .
+COPY flightontime/flightontime/mvnw.cmd .
 RUN ./mvnw -B dependency:go-offline
 
-COPY flightontime/src src
+COPY flightontime/flightontime/src src
 RUN ./mvnw -B clean package -DskipTests
 
 # Etapa 2: runtime
