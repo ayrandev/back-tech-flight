@@ -1,17 +1,17 @@
-# 1️⃣ Etapa de build
+# Etapa 1: build
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
 COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw .
-RUN chmod +x mvnw
-RUN ./mvnw dependency:go-offline
+COPY mvnw.cmd .
+RUN ./mvnw -B dependency:go-offline
 
 COPY src src
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw -B clean package -DskipTests
 
-# 2️⃣ Etapa de runtime
+# Etapa 2: runtime
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 
