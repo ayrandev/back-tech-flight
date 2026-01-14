@@ -6,7 +6,10 @@ COPY flightontime/flightontime/pom.xml .
 COPY flightontime/flightontime/.mvn .mvn
 COPY flightontime/flightontime/mvnw .
 COPY flightontime/flightontime/mvnw.cmd .
+
+RUN chmod +x mvnw
 RUN ./mvnw -B dependency:go-offline
+
 
 COPY flightontime/flightontime/src src
 RUN ./mvnw -B clean package -DskipTests
