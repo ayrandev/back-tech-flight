@@ -25,8 +25,9 @@ public class HistoricoService {
     private final ExplicabilidadeService explicabilidadeService;
 
     public PredictionResponse prediction(PredictionRequest request) {
-        log.debug("Predição recebida para companhia {} de {} para {} em {}", request.codCompanhia(),
+        log.info("Predição recebida para companhia {} de {} para {} em {}", request.codCompanhia(),
                 request.codAeroportoOrigem(), request.codAeroportoDestino(), request.dataHoraPartida());
+
         validation.validation(request);
         log.info("Request de predição validado com sucesso");
         PredictionResponse response;

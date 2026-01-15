@@ -34,6 +34,17 @@ public class GerenciadorErros {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiDetails);
     }
 
+    @ExceptionHandler(DataHoraPartidaInvalidaException.class)
+    public ResponseEntity<@NonNull ApiDetails> tratarDataHoraInvalida(DataHoraPartidaInvalidaException ex){
+        ApiDetails apiDetails = ApiDetails.builder()
+                .title("Data e hora de partida inválida")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(java.time.LocalDateTime.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiDetails);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<@NonNull ApiDetails> tratarValidacaoBean(MethodArgumentNotValidException ex) {
 
